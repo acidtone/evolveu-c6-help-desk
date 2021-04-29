@@ -18,14 +18,15 @@ app.get('/definitions', (req, res) => {
     if (err) {
       res.sendStatus(404);
     }
-    res.send(definitions);
+    console.log(definitions);
+    res.json(definitions);
   })
 })
 
 app.get('/definitions/:slug', (req, res) => {
   Definition.find({slug: req.params.slug},function(err,definition){
     if (err) {
-      res.sendStatus(404)
+      res.sendStatus(404);
     }
     res.json(definition);
   })
@@ -33,6 +34,6 @@ app.get('/definitions/:slug', (req, res) => {
 
 const PORT = process.env.PORT || 3000;
 
-app.listen(PORT, ()=>{
+app.listen(PORT, () => {
   console.log(`Listening on port: ${PORT}`);
 });
